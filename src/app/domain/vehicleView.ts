@@ -1,5 +1,5 @@
 export interface IVehicleView {
-  id: number | null | undefined;
+  id: number;
   plate: string | null;
   manufacturer: string | null;
   make: string | null;
@@ -9,7 +9,7 @@ export interface IVehicleView {
 }
 
 export class VehicleView implements IVehicleView {
-  id: number | null | undefined = null;
+  id: number;
   plate: string | null;
   manufacturer: string | null;
   make: string | null;
@@ -18,7 +18,7 @@ export class VehicleView implements IVehicleView {
   capacity: number | null;
 
   constructor(
-    id?: number | null,
+    id: number,
     plate?: string | null,
     manufacturer?: string | null,
     make?: string | null,
@@ -26,7 +26,7 @@ export class VehicleView implements IVehicleView {
     vinNumber?: string | null,
     capacity?: number | null
   ) {
-    this.id = id || null;
+    this.id = id;
     this.plate = plate || null;
     this.manufacturer = manufacturer || null;
     this.make = make || null;

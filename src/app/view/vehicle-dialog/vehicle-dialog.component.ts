@@ -12,10 +12,10 @@ export class VehicleDialogComponent implements OnInit {
 
   displayVehicleDialog: boolean = false;
   vehicleForm!: FormGroup;
-  vehicle: VehicleView;
+  // vehicle: VehicleView;
 
   constructor(private fb: FormBuilder) {
-    this.vehicle = new VehicleView();
+    // this.vehicle = new VehicleView();
   }
 
   ngOnInit(): void {

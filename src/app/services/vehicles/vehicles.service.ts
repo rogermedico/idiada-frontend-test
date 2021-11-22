@@ -1,32 +1,59 @@
 import { Injectable, Injector } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { from, observable, Observable, of } from 'rxjs';
 import { VehicleView } from '../../domain/vehicleView';
 import { MockitoUtils } from '../../utils/MockitoUtils';
+import { catchError, tap } from 'rxjs/operators';
+// import { resourceLimits } from 'worker_threads';
 
 @Injectable({
   providedIn: 'root'
 })
 export class VehiclesService {
 
-  url: string;
-  headers = { 'Content-Type': 'application/json' };
+  httpOptions = {
+    headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+  };
 
-  constructor(public http: HttpClient, private injector: Injector) {
-    this.url = environment.domainUrl + 'vehicles';
+  constructor(private http: HttpClient) { }
+
+  getVehicles(): Observable<VehicleView[]> {
+    return this.http.get<VehicleView[]>(environment.vehicleEndpoint).pipe(
+      catchError(err => this.handleError<VehicleView[]>(err, 'getVehicles', []))
+    );
   }
 
-  loadVehicles(): Observable<VehicleView[]> {
-    // return from(new Promise((resolve, reject) => {
-    //   resolve(MockitoUtils.createVehicleList());
-    // }
-    // ));
-    return of(MockitoUtils.createVehicleList());
+  getVehicle(id: number): Observable<VehicleView> {
+    return this.http.get<VehicleView>(`${environment.vehicleEndpoint}/${id}`).pipe(
+      // catchError(err => this.handleError<VehicleView[]>(err, 'getVehicles', []))
+    );
   }
 
-  createVehicle(vehicleView: VehicleView): Observable<VehicleView> {
-    return this.http.post<VehicleView>(this.url, vehicleView, { headers: this.headers });
+  createVehicle(vehicle: VehicleView): Observable<VehicleView> {
+    return this.http.post<VehicleView>(environment.vehicleEndpoint, vehicle, this.httpOptions).pipe(
+      // catchError(err => this.handleError<VehicleView>(err, 'createVehicle'))
+    );
+  }
+
+  deleteVehicle(vehicle: VehicleView | number): Observable<VehicleView> {
+    const id = typeof vehicle === 'number' ? vehicle : vehicle.id;
+
+    return this.http.delete<VehicleView>(`${environment.vehicleEndpoint}/${id}`, this.httpOptions).pipe(
+      // catchError(err => this.handleError<VehicleView>(err, 'deleteVehicle'))
+    );
+  }
+
+  updateVehicle(vehicle: VehicleView): Observable<VehicleView> {
+    return this.http.put<VehicleView>(environment.vehicleEndpoint, vehicle, this.httpOptions).pipe(
+      // catchError(err => this.handleError<VehicleView>(err, 'updateVehicle'))
+    );
+  }
+
+  private handleError<T>(err: Error, method: string, result?: T): Observable<T> {
+    console.error(`${method} failed: ${err.message}`);
+    return of(result as T);
   }
 
 }
+
