@@ -1,5 +1,5 @@
 export interface IVehicleView {
-  id: number;
+  id?: number;
   plate: string | null;
   manufacturer: string | null;
   make: string | null;

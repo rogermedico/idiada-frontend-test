@@ -1,0 +1,43 @@
+<form [formGroup]="vehicleFormGroup" (ngSubmit)="submit()">
+  <div mat-dialog-content>
+    <section fxLayout="column" fxLayoutGap="0" fxLayout.gt-md="row" fxLayoutGap.gt-md="16px">
+      <mat-form-field class="form__input" appearance="outline" fxFlex.gt-md="auto">
+        <mat-label>Plate</mat-label>
+        <input matInput type="text" placeholder="Joan" name="name" formControlName="plate">
+      </mat-form-field>
+      <mat-form-field class="form__input" appearance="outline" fxFlex.gt-md="auto">
+        <mat-label>Cognoms</mat-label>
+        <input matInput type="text" placeholder="Baiges Ferré" name="surname" formControlName="manufacturer">
+      </mat-form-field>
+    </section>
+    <section fxLayout="column" fxLayoutGap="0" fxLayout.gt-md="row" fxLayoutGap.gt-md="16px">
+      <mat-form-field class="form__input" appearance="outline" fxFlex.gt-md="auto">
+        <mat-label>Correu electrònic</mat-label>
+        <input matInput type="email" placeholder="exemple@serveiscapicua.cat" name="email" formControlName="make">
+      </mat-form-field>
+      <mat-form-field class="form__input" appearance="outline" fxFlex.gt-md="auto">
+        <mat-label>Correu electrònic</mat-label>
+        <input matInput type="email" placeholder="exemple@serveiscapicua.cat" name="email"
+          formControlName="commercialName">
+      </mat-form-field>
+    </section>
+    <section fxLayout="column" fxLayoutGap="0" fxLayout.gt-md="row" fxLayoutGap.gt-md="16px">
+      <mat-form-field class="form__input" appearance="outline" fxFlex.gt-md="auto">
+        <mat-label>Correu electrònic</mat-label>
+        <input matInput type="email" placeholder="exemple@serveiscapicua.cat" name="email" formControlName="vinNumber">
+      </mat-form-field>
+      <mat-form-field class="form__input" appearance="outline" fxFlex.gt-md="auto">
+        <mat-label>Correu electrònic</mat-label>
+        <input matInput type="email" placeholder="exemple@serveiscapicua.cat" name="email" formControlName="capacity">
+      </mat-form-field>
+    </section>
+
+  </div>
+  <div mat-dialog-content fxLayout="row" fxLayoutAlign="space-between center">
+    <!-- <button mat-button
+      [ngClass]="{'mat-stroked-button':themeService.isLightMode(),'mat-raised-button':themeService.isDarkMode()}"
+      color="accent" type="button" (click)="onCloseDialog()">Cancel</button> -->
+    <button mat-button color="accent" type="button" (click)="onCloseDialog()">Cancel</button>
+    <button mat-raised-button color="accent" type="submit" [disabled]="!vehicleFormGroup.valid">Ok</button>
+  </div>
+</form>
