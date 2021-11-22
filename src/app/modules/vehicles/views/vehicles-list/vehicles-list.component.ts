@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { VehiclesService } from '../../services/vehicles/vehicles.service';
-import { VehicleView } from '../../models/vehicleView';
+import { VehiclesService } from '../../services/vehicles.service';
+import { VehicleView } from '../../../../models/vehicleView';
 import { VehicleDialogComponent } from '../dialogs/vehicle-dialog/vehicle-dialog.component';
-import { flatMap, mergeMap, take, tap } from 'rxjs/operators';
+import { take, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../dialogs/confirm-dialog/confirm-dialog.component';
 
