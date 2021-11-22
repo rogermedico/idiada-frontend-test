@@ -10,9 +10,9 @@ import { VehicleDialogComponent } from '../vehicle-dialog/vehicle-dialog.compone
 })
 export class VehiclesListComponent implements OnInit {
 
-  vehicleList: VehicleView[];
-  vehicle: VehicleView;
-  @ViewChild(VehicleDialogComponent) vehicleDialogComponent: VehicleDialogComponent;
+  vehicleList: VehicleView[] = [];
+  vehicle: VehicleView | undefined;
+  @ViewChild(VehicleDialogComponent) vehicleDialogComponent: VehicleDialogComponent | undefined;
 
   constructor(private vehiclesService: VehiclesService) {
 
@@ -23,10 +23,10 @@ export class VehiclesListComponent implements OnInit {
   }
 
   private loadVehicles() {
-    this.vehiclesService.loadVehicles().subscribe(response => this.onVehicleListCallSuccess(response));
+    this.vehiclesService.loadVehicles().subscribe((response: VehicleView[]) => this.onVehicleListCallSuccess(response));
   }
 
-  private onVehicleListCallSuccess(response) {
+  private onVehicleListCallSuccess(response: VehicleView[]) {
     console.log(response)
     this.vehicleList = response.map(vehicle => {
       return new VehicleView(vehicle.id, vehicle.plate, vehicle.manufacturer, vehicle.make, vehicle.commercialName,
@@ -35,7 +35,7 @@ export class VehiclesListComponent implements OnInit {
   }
 
   showVehicleDialog(vehicle?: VehicleView) {
-    this.vehicleDialogComponent.showVehicleDialog(vehicle);
+    this.vehicleDialogComponent?.showVehicleDialog(vehicle);
   }
 
 }

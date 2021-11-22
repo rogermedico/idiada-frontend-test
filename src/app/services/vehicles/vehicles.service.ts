@@ -11,7 +11,7 @@ import { MockitoUtils } from '../../utils/MockitoUtils';
 export class VehiclesService {
 
   url: string;
-  headers: { 'Content-Type': 'application/json' };
+  headers = { 'Content-Type': 'application/json' };
 
   constructor(public http: HttpClient, private injector: Injector) {
     this.url = environment.domainUrl + 'vehicles';

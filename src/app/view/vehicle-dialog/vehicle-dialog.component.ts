@@ -10,8 +10,8 @@ import { VehicleView } from '../../domain/vehicleView';
 })
 export class VehicleDialogComponent implements OnInit {
 
-  displayVehicleDialog: boolean;
-  vehicleForm: FormGroup;
+  displayVehicleDialog: boolean = false;
+  vehicleForm!: FormGroup;
   vehicle: VehicleView;
 
   constructor(private fb: FormBuilder) {
