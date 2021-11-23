@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { VehiclesService } from '../../services/vehicles.service';
 import { VehicleView } from '../../../../models/vehicleView';
 import { VehicleDialogComponent } from '../dialogs/vehicle-dialog/vehicle-dialog.component';
-import { take, tap } from 'rxjs/operators';
+import { filter, take, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../dialogs/confirm-dialog/confirm-dialog.component';
 
@@ -34,6 +34,7 @@ export class VehiclesListComponent implements OnInit {
     const dialogRef = this.dialog.open(VehicleDialogComponent);
     dialogRef.afterClosed().pipe(
       take(1),
+      filter(vehicleData => vehicleData),
       tap(vehicleFormData => {
         this.vs.createVehicle(vehicleFormData).subscribe(vehicle => {
           this.vehicleList = [...this.vehicleList, vehicle];
@@ -57,6 +58,7 @@ export class VehiclesListComponent implements OnInit {
       });
       dialogRef.afterClosed().pipe(
         take(1),
+        filter(newData => newData),
         tap(vehicleFormData => {
           const modifiedVehicle: VehicleView = {
             ...vehicleFormData,
@@ -85,15 +87,14 @@ export class VehiclesListComponent implements OnInit {
 
     dialogRef.afterClosed().pipe(
       take(1),
-      tap((result: boolean) => {
-        if (result) {
-          this.vs.deleteVehicle(vehicle.id).pipe(
-            take(1),
-            tap(() => {
-              this.vehicleList = this.vehicleList.filter((v: VehicleView) => v.id != vehicle.id);
-            })
-          ).subscribe();
-        }
+      filter(result => result),
+      tap(() => {
+        this.vs.deleteVehicle(vehicle.id).pipe(
+          take(1),
+          tap(() => {
+            this.vehicleList = this.vehicleList.filter((v: VehicleView) => v.id != vehicle.id);
+          })
+        ).subscribe();
       })).subscribe();
   }
 
