@@ -8,8 +8,9 @@
     </a>
   </mat-card-header>
 
-  <p-button type="button" pButton class="ui-button-raised" icon="pi pi-plus" title="Create" label="Add Vehicle"
-    (click)="createVehicle()"></p-button>
+  <button mat-mini-fab class="ui-button-raised" color="accent" aria-label="New vehicle" (click)="createVehicle()">
+    <mat-icon>add</mat-icon>
+  </button>
   <mat-card-content>
 
     <div class="filter-wrapper">
