@@ -6,10 +6,6 @@ import { VehiclesListComponent } from './views/vehicles-list/vehicles-list.compo
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MaterialModule } from 'src/app/modules/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
-import { ButtonModule } from 'primeng/button';
-import { CardModule } from 'primeng/card';
-import { DialogModule } from 'primeng/dialog';
-import { TableModule } from 'primeng/table';
 import { VehiclesRoutingModule } from './vehicles-routing.module';
 
 @NgModule({
@@ -24,10 +20,6 @@ import { VehiclesRoutingModule } from './vehicles-routing.module';
     VehiclesRoutingModule,
     MaterialModule,
     FlexLayoutModule,
-    CardModule,
-    TableModule,
-    DialogModule,
-    ButtonModule,
   ]
 })
 export class VehiclesModule { }
