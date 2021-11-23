@@ -20,14 +20,14 @@ import { FlexLayoutModule } from '@angular/flex-layout';
     BrowserAnimationsModule,
     AppRoutingModule,
     HttpClientModule,
-    // MaterialModule,
+    MaterialModule,
     // ReactiveFormsModule,
     // CardModule,
     // TableModule,
     // DialogModule,
     // ButtonModule,
 
-    // FlexLayoutModule,
+    FlexLayoutModule,
     inMemoryWebApiModule
   ],
   // schemas: [

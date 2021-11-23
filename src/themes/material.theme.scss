@@ -1,0 +1,59 @@
+@import "~@angular/material/theming";
+@import "./variables.theme.scss";
+@import "./app-light.theme.scss";
+@import "./app-dark.theme.scss";
+@import "./responsive.theme.scss";
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+
+// Create the theme object. A theme consists of configurations for individual
+// theming systems such as `color` or `typography`.
+$idiada-light-app-theme: mat-light-theme(
+  $idiada-light-app-primary,
+  $idiada-light-app-accent,
+  $idiada-light-app-warn
+);
+
+$idiada-dark-app-theme: mat-dark-theme(
+  $idiada-dark-app-primary,
+  $idiada-dark-app-accent,
+  $idiada-dark-app-warn
+);
+
+@mixin light-theme() {
+  @include angular-material-theme($idiada-light-app-theme);
+  @include app-light-theme($idiada-light-app-theme);
+}
+
+@mixin dark-theme() {
+  @include angular-material-theme($idiada-dark-app-theme);
+  @include app-dark-theme($idiada-dark-app-theme);
+}
+
+@media (hover: none), (pointer: coarse) {
+  @media (prefers-color-scheme: light) {
+    @include light-theme();
+  }
+
+  @media (prefers-color-scheme: dark) {
+    @include dark-theme();
+  }
+}
+
+@media (hover: hover), (pointer: not(coarse)) {
+  .light-mode {
+    @include light-theme();
+  }
+
+  .dark-mode {
+    @include dark-theme();
+  }
+}

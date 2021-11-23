@@ -33,10 +33,10 @@
 
   </div>
   <div mat-dialog-content fxLayout="row" fxLayoutAlign="space-between center">
-    <!-- <button mat-button
+    <button mat-button
       [ngClass]="{'mat-stroked-button':themeService.isLightMode(),'mat-raised-button':themeService.isDarkMode()}"
-      color="accent" type="button" (click)="onCloseDialog()">Cancel</button> -->
-    <button mat-button color="accent" type="button" (click)="onCloseDialog()">Cancel</button>
+      color="accent" type="button" (click)="onCloseDialog()">Cancel</button>
+    <!-- <button mat-button color="accent" type="button" (click)="onCloseDialog()">Cancel</button> -->
     <button mat-raised-button color="accent" type="submit" [disabled]="!vehicleFormGroup.valid">Ok</button>
   </div>
 </form>

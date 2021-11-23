@@ -1,0 +1,58 @@
+@import "../themes/responsive.theme.scss";
+
+mat-sidenav-container {
+  height: 100%;
+}
+
+mat-sidenav-content,
+mat-sidenav {
+  height: calc(100% - 56px);
+  @include screen("sm") {
+    height: calc(100% - 64px);
+  }
+}
+
+mat-sidenav {
+  width: 250px;
+}
+
+.mat-toolbar-single-row {
+  height: 64px;
+}
+
+.toolbar__brand {
+  margin-left: 16px;
+}
+
+.toolbar__brand__text {
+  font-size: 1.4rem;
+}
+
+.toolbar__link {
+  text-decoration: none;
+  color: inherit;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.navigation-items {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.fixed {
+  position: fixed;
+  z-index: 2;
+  margin-bottom: 16px;
+}
+
+.router-outlet-container {
+  height: 100%;
+}
+
+.beta {
+  margin-left: 1rem;
+  font-size: 0.8rem;
+}

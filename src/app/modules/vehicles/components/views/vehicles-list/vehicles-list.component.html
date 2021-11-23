@@ -1,0 +1,72 @@
+<div class="container">
+  <mat-card class="mat-elevation-z4">
+    <mat-card-header class="mat-card-header">
+      <mat-card-title>
+        Vehicles ({{vehicleList.data.length}})
+      </mat-card-title>
+      <a class="action-link" [routerLink]="" fxHide fxShow.gt-xs>
+        <mat-icon class="action-icon title-icon-large-res">cloud_download</mat-icon>
+      </a>
+    </mat-card-header>
+
+    <button mat-mini-fab class="ui-button-raised" color="accent" aria-label="New vehicle" (click)="createVehicle()">
+      <mat-icon>add</mat-icon>
+    </button>
+    <mat-card-content>
+
+      <div class="filter-wrapper">
+        <mat-form-field class="filter">
+          <mat-label>Filter</mat-label>
+          <input matInput (keyup)="vehiclesApplyFilter($event)" placeholder="Renault" #input>
+          <mat-icon matSuffix>search</mat-icon>
+        </mat-form-field>
+      </div>
+
+      <mat-table [dataSource]="vehicleList">
+        <ng-container matColumnDef="id">
+          <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="plate">
+          <mat-header-cell *matHeaderCellDef>Plate</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.plate}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="manufacturer">
+          <mat-header-cell *matHeaderCellDef>Manufacturer</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.manufacturer}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="make">
+          <mat-header-cell *matHeaderCellDef>Make</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.make}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="commercialName">
+          <mat-header-cell *matHeaderCellDef>Commercial name</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.commercialName}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="vinNumber">
+          <mat-header-cell *matHeaderCellDef>Vin number</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.vinNumber}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="capacity">
+          <mat-header-cell *matHeaderCellDef>Capacity</mat-header-cell>
+          <mat-cell *matCellDef="let element">{{element.capacity}}</mat-cell>
+        </ng-container>
+        <ng-container matColumnDef="actions">
+          <mat-header-cell class="actions-header" *matHeaderCellDef>Actions</mat-header-cell>
+          <mat-cell *matCellDef="let element; let i = index">
+            <a class="action-link" [routerLink]="" (click)="updateVehicle(element.id)">
+              <mat-icon class="action-icon">edit</mat-icon>
+            </a>
+            <a class="action-link" [routerLink]="" (click)="deleteVehicle(element)">
+              <mat-icon class="action-icon">delete</mat-icon>
+            </a>
+          </mat-cell>
+        </ng-container>
+
+
+        <mat-header-row *matHeaderRowDef="vehicleTableDisplayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: vehicleTableDisplayedColumns;"></mat-row>
+      </mat-table>
+    </mat-card-content>
+  </mat-card>
+</div>

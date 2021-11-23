@@ -14,7 +14,7 @@ import { filter, map, take } from 'rxjs/operators';
 // import { NewUser } from '@models/user.model';
 // import { PasswordGeneratorService } from '@services/password-generator.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-// import { ThemeService } from '@services/theme.service';
+import { ThemeService } from '../../../../../shared/theme.service';
 
 @Component({
   selector: 'app-vehicle-dialog',
@@ -44,7 +44,7 @@ export class VehicleDialogComponent implements OnInit {
       vinNumber: string | null;
       capacity: number | null;
     },
-    // public themeService: ThemeService
+    public themeService: ThemeService
   ) { }
 
   ngOnInit(): void {
