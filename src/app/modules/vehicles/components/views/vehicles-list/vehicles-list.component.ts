@@ -9,6 +9,8 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver-es';
 import { MatPaginator } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
+import { NotificationService } from '@shared/services/notification.service';
 
 @Component({
   selector: 'app-vehicles-list',
@@ -20,11 +22,14 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
   public vehicleList: MatTableDataSource<VehicleView> = new MatTableDataSource();
   public vehicle: VehicleView | undefined;
   public vehicleTableDisplayedColumns: string[] = ['id', 'plate', 'manufacturer', 'make', 'commercialName', 'vinNumber', 'capacity', 'actions']
+
   @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
     private vs: VehiclesService,
     private dialog: MatDialog,
+    private ns: NotificationService
   ) { }
 
   ngOnInit() {
@@ -38,6 +43,7 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit(): void {
     this.vehicleList.paginator = this.paginator;
+    this.vehicleList.sort = this.sort;
   }
 
   createVehicle(): void {
@@ -49,7 +55,8 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
         this.vs.createVehicle(vehicleFormData).subscribe(vehicle => {
           this.vehicleList.data = [...this.vehicleList.data, vehicle];
         })
-      })
+      }),
+      tap(() => this.ns.showMessage('New vehicle successfully added', 'OK'))
     ).subscribe();
   }
 
@@ -81,9 +88,10 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
                 if (v.id != modifiedVehicle.id) return v;
                 else return modifiedVehicle;
               });
-            })
+              this.ns.showMessage(`Vehicle with id ${modifiedVehicle?.id} successfully updated`, 'OK');
+            }),
           ).subscribe();
-        })
+        }),
       ).subscribe();
     }
   }
@@ -104,6 +112,7 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
           take(1),
           tap(() => {
             this.vehicleList.data = this.vehicleList.data.filter((v: VehicleView) => v.id != vehicle.id);
+            this.ns.showMessage(`Vehicle with id ${vehicle.id} successfully deleted`, 'OK')
           })
         ).subscribe();
       })).subscribe();

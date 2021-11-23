@@ -9,7 +9,7 @@ export class InMemoryDataService implements InMemoryDbService {
 
   private generateMockCars(): VehicleView[] {
     const vehicleList: VehicleView[] = [];
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 25; i++) {
       vehicleList.push({
         id: i,
         commercialName: 'Megane RS',

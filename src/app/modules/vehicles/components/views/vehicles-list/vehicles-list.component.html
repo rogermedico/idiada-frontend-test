@@ -30,33 +30,34 @@
         </mat-form-field>
       </div>
       <div>
-        <mat-table [dataSource]="vehicleList">
+        <mat-table [dataSource]="vehicleList" matSort>
           <ng-container matColumnDef="id">
-            <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Id</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-md>Id
+            </mat-header-cell>
             <mat-cell *matCellDef="let element" fxHide fxShow.gt-md>{{element.id}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="plate">
-            <mat-header-cell *matHeaderCellDef>Plate</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Plate</mat-header-cell>
             <mat-cell *matCellDef="let element">{{element.plate}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="manufacturer">
-            <mat-header-cell *matHeaderCellDef>Manufacturer</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Manufacturer</mat-header-cell>
             <mat-cell *matCellDef="let element">{{element.manufacturer}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="make">
-            <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs>Make</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-xs>Make</mat-header-cell>
             <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs>{{element.make}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="commercialName">
-            <mat-header-cell *matHeaderCellDef>Commercial name</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header>Commercial name</mat-header-cell>
             <mat-cell *matCellDef="let element">{{element.commercialName}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="vinNumber">
-            <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Vin number</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-sm>Vin number</mat-header-cell>
             <mat-cell *matCellDef="let element" fxHide fxShow.gt-sm>{{element.vinNumber}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="capacity">
-            <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Capacity</mat-header-cell>
+            <mat-header-cell *matHeaderCellDef mat-sort-header fxHide fxShow.gt-md>Capacity</mat-header-cell>
             <mat-cell *matCellDef="let element" fxHide fxShow.gt-md>{{element.capacity}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="actions">
