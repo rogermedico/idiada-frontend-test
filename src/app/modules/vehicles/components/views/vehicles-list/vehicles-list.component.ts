@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { VehiclesService } from '@modules/vehicles/services/vehicles.service';
 import { VehicleView } from '@models/vehicleView';
 import { VehicleDialogComponent } from '@modules/vehicles/components/dialogs/vehicle-dialog/vehicle-dialog.component';
@@ -8,17 +8,19 @@ import { ConfirmDialogComponent } from '@modules/vehicles/components/dialogs/con
 import { MatTableDataSource } from '@angular/material/table';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver-es';
+import { MatPaginator } from '@angular/material/paginator';
 
 @Component({
   selector: 'app-vehicles-list',
   templateUrl: './vehicles-list.component.html',
   styleUrls: ['./vehicles-list.component.scss'],
 })
-export class VehiclesListComponent implements OnInit {
+export class VehiclesListComponent implements OnInit, AfterViewInit {
 
-  public vehicleList: MatTableDataSource<VehicleView> = new MatTableDataSource();//[] = [];
+  public vehicleList: MatTableDataSource<VehicleView> = new MatTableDataSource();
   public vehicle: VehicleView | undefined;
   public vehicleTableDisplayedColumns: string[] = ['id', 'plate', 'manufacturer', 'make', 'commercialName', 'vinNumber', 'capacity', 'actions']
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(
     private vs: VehiclesService,
@@ -32,7 +34,10 @@ export class VehiclesListComponent implements OnInit {
         this.vehicleList.data = vehicles
       })
     ).subscribe();
+  }
 
+  ngAfterViewInit(): void {
+    this.vehicleList.paginator = this.paginator;
   }
 
   createVehicle(): void {
