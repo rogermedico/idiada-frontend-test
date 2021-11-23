@@ -1,8 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from 'src/app/modules/material/material.module';
-import { ReactiveFormsModule } from '@angular/forms';
+import { MaterialModule } from '@modules/material/material.module';
 import { HomeRoutingModule } from './home-routing.module';
 import { HomeComponent } from './components/views/home/home.component';
 
@@ -12,7 +11,6 @@ import { HomeComponent } from './components/views/home/home.component';
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule,
     HomeRoutingModule,
     MaterialModule,
     FlexLayoutModule,

@@ -2,7 +2,7 @@
 {
   "compileOnSave": false,
   "compilerOptions": {
-    "baseUrl": "./",
+    "baseUrl": "src",
     "outDir": "./dist/out-tsc",
     "forceConsistentCasingInFileNames": true,
     "strict": true,
@@ -21,7 +21,11 @@
       "dom"
     ],
     "paths": {
-      "@environments/*": ["environments/*"]
+      "@environments/*": ["environments/*"],
+      "@modules/*": ["app/modules/*"],
+      "@models/*": ["app/models/*"],
+      "@shared/*": ["app/shared/*"],
+      "@themes/*": [ "themes/*"]
     }
   },
   "angularCompilerOptions": {

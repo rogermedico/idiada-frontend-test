@@ -4,7 +4,7 @@ import { ConfirmDialogComponent } from './components/dialogs/confirm-dialog/conf
 import { VehicleDialogComponent } from './components/dialogs/vehicle-dialog/vehicle-dialog.component';
 import { VehiclesListComponent } from './components/views/vehicles-list/vehicles-list.component';
 import { FlexLayoutModule } from '@angular/flex-layout';
-import { MaterialModule } from 'src/app/modules/material/material.module';
+import { MaterialModule } from '@modules/material/material.module';
 import { ReactiveFormsModule } from '@angular/forms';
 import { VehiclesRoutingModule } from './vehicles-routing.module';
 

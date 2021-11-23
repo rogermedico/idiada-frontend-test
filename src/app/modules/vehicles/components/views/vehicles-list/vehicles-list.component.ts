@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { VehiclesService } from '../../../services/vehicles.service';
-import { VehicleView } from '../../../../../models/vehicleView';
-import { VehicleDialogComponent } from '../../dialogs/vehicle-dialog/vehicle-dialog.component';
+import { VehiclesService } from '@modules/vehicles/services/vehicles.service';
+import { VehicleView } from '@models/vehicleView';
+import { VehicleDialogComponent } from '@modules/vehicles/components/dialogs/vehicle-dialog/vehicle-dialog.component';
 import { filter, mergeMap, take, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
-import { ConfirmDialogComponent } from '../../dialogs/confirm-dialog/confirm-dialog.component';
-import { Observable } from 'rxjs';
+import { ConfirmDialogComponent } from '@modules/vehicles/components/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
 import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver-es';

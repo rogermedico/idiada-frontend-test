@@ -2,7 +2,7 @@ import { BreakpointObserver, Breakpoints, BreakpointState } from '@angular/cdk/l
 import { Component, ElementRef, ViewChild } from '@angular/core';
 import { MatDrawerMode, MatSidenavContent } from '@angular/material/sidenav';
 import { Subscription } from 'rxjs';
-import { ThemeService } from './shared/theme.service';
+import { ThemeService } from '@shared/services/theme.service';
 
 @Component({
   selector: 'app-root',

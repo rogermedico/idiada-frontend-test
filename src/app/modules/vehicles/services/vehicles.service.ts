@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { environment } from '../../../../environments/environment';
+import { environment } from '@environments/environment';
 import { Observable, of } from 'rxjs';
-import { VehicleView } from '../../../models/vehicleView';
+import { VehicleView } from '@models/vehicleView';
 
 import { catchError, tap } from 'rxjs/operators';
 
