@@ -5,13 +5,21 @@
         Vehicles ({{vehicleList.data.length}})
       </mat-card-title>
       <a class="action-link" [routerLink]="" fxHide fxShow.gt-xs>
-        <mat-icon class="action-icon title-icon-large-res">cloud_download</mat-icon>
+        <mat-icon class="action-icon title-icon-large-res" (click)="exportExcel()">cloud_download</mat-icon>
       </a>
     </mat-card-header>
 
-    <button mat-mini-fab class="ui-button-raised" color="accent" aria-label="New vehicle" (click)="createVehicle()">
-      <mat-icon>add</mat-icon>
-    </button>
+    <div class="small-res-button-container">
+      <button class="small-res-buttons" mat-mini-fab color="accent" aria-label="Download info" (click)="exportExcel()"
+        fxShow fxHide.gt-xs>
+        <mat-icon>cloud_download</mat-icon>
+      </button>
+      <button class="small-res-buttons" mat-mini-fab color="accent" aria-label="Create vehicle"
+        (click)="createVehicle()" fxShow fxHide.gt-xs>
+        <mat-icon>add</mat-icon>
+      </button>
+    </div>
+
     <mat-card-content>
 
       <div class="filter-wrapper">
@@ -24,8 +32,8 @@
 
       <mat-table [dataSource]="vehicleList">
         <ng-container matColumnDef="id">
-          <mat-header-cell *matHeaderCellDef>Id</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.id}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Id</mat-header-cell>
+          <mat-cell *matCellDef="let element" fxHide fxShow.gt-md>{{element.id}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="plate">
           <mat-header-cell *matHeaderCellDef>Plate</mat-header-cell>
@@ -36,20 +44,20 @@
           <mat-cell *matCellDef="let element">{{element.manufacturer}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="make">
-          <mat-header-cell *matHeaderCellDef>Make</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.make}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-xs>Make</mat-header-cell>
+          <mat-cell *matCellDef="let element" fxHide fxShow.gt-xs>{{element.make}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="commercialName">
           <mat-header-cell *matHeaderCellDef>Commercial name</mat-header-cell>
           <mat-cell *matCellDef="let element">{{element.commercialName}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="vinNumber">
-          <mat-header-cell *matHeaderCellDef>Vin number</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.vinNumber}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-sm>Vin number</mat-header-cell>
+          <mat-cell *matCellDef="let element" fxHide fxShow.gt-sm>{{element.vinNumber}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="capacity">
-          <mat-header-cell *matHeaderCellDef>Capacity</mat-header-cell>
-          <mat-cell *matCellDef="let element">{{element.capacity}}</mat-cell>
+          <mat-header-cell *matHeaderCellDef fxHide fxShow.gt-md>Capacity</mat-header-cell>
+          <mat-cell *matCellDef="let element" fxHide fxShow.gt-md>{{element.capacity}}</mat-cell>
         </ng-container>
         <ng-container matColumnDef="actions">
           <mat-header-cell class="actions-header" *matHeaderCellDef>Actions</mat-header-cell>
@@ -67,6 +75,10 @@
         <mat-header-row *matHeaderRowDef="vehicleTableDisplayedColumns"></mat-header-row>
         <mat-row *matRowDef="let row; columns: vehicleTableDisplayedColumns;"></mat-row>
       </mat-table>
+      <button class="new-vehicle-button" mat-fab color="accent" aria-label="Create vehicle" (click)="createVehicle()"
+        fxHide fxShow.gt-xs>
+        <mat-icon>add</mat-icon>
+      </button>
     </mat-card-content>
   </mat-card>
 </div>

@@ -1,4 +1,4 @@
-@import "../../../../../themes/responsive.theme.scss";
+@import "../../../../../../themes/responsive.theme.scss";
 
 .container {
   padding: 8px 0;
@@ -11,9 +11,15 @@
   box-sizing: border-box;
   margin: 16px 8px;
   position: relative;
+  text-align: center;
   @include screen("sm") {
     margin: 16px 32px;
   }
+}
+
+.img-fluid {
+  height: auto;
+  max-width: 300px;
 }
 
 .mat-card > :first-child {

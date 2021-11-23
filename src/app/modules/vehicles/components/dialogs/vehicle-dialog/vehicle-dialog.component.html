@@ -1,42 +1,43 @@
-<form [formGroup]="vehicleFormGroup" (ngSubmit)="submit()">
-  <div mat-dialog-content>
-    <section fxLayout="column" fxLayoutGap="0" fxLayout.gt-md="row" fxLayoutGap.gt-md="16px">
-      <mat-form-field appearance="outline" fxFlex.gt-md="auto">
-        <mat-label>Plate</mat-label>
-        <input matInput type="text" placeholder="1234ABC" name="plate" formControlName="plate">
-      </mat-form-field>
-      <mat-form-field appearance="outline" fxFlex.gt-md="auto">
-        <mat-label>Manufacturer</mat-label>
-        <input matInput type="text" placeholder="Renault Group" name="manufacturer" formControlName="manufacturer">
-      </mat-form-field>
-    </section>
-    <section fxLayout="column" fxLayoutGap="0" fxLayout.gt-md="row" fxLayoutGap.gt-md="16px">
-      <mat-form-field appearance="outline" fxFlex.gt-md="auto">
-        <mat-label>Make</mat-label>
-        <input matInput type="text" placeholder="Renault" name="make" formControlName="make">
-      </mat-form-field>
-      <mat-form-field appearance="outline" fxFlex.gt-md="auto">
-        <mat-label>Comercial name</mat-label>
-        <input matInput type="text" placeholder="Megane RS" name="comercialName" formControlName="commercialName">
-      </mat-form-field>
-    </section>
-    <section fxLayout="column" fxLayoutGap="0" fxLayout.gt-md="row" fxLayoutGap.gt-md="16px">
-      <mat-form-field appearance="outline" fxFlex.gt-md="auto">
-        <mat-label>Vin number</mat-label>
-        <input matInput type="text" placeholder="7783LLD" name="vinNumber" formControlName="vinNumber">
-      </mat-form-field>
-      <mat-form-field appearance="outline" fxFlex.gt-md="auto">
-        <mat-label>Capacity</mat-label>
-        <input matInput type="number" placeholder="4" name="capacity" formControlName="capacity">
-      </mat-form-field>
-    </section>
+<div class="dialog-wrapper">
+  <form [formGroup]="vehicleFormGroup" (ngSubmit)="submit()">
+    <div mat-dialog-content>
+      <section fxLayout="column" fxLayoutGap="0" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+        <mat-form-field appearance="outline" fxFlex.gt-sm="auto">
+          <mat-label>Plate</mat-label>
+          <input matInput type="text" placeholder="1234ABC" name="plate" formControlName="plate">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex.gt-sm="auto">
+          <mat-label>Manufacturer</mat-label>
+          <input matInput type="text" placeholder="Renault Group" name="manufacturer" formControlName="manufacturer">
+        </mat-form-field>
+      </section>
+      <section fxLayout="column" fxLayoutGap="0" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+        <mat-form-field appearance="outline" fxFlex.gt-sm="auto">
+          <mat-label>Make</mat-label>
+          <input matInput type="text" placeholder="Renault" name="make" formControlName="make">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex.gt-sm="auto">
+          <mat-label>Comercial name</mat-label>
+          <input matInput type="text" placeholder="Megane RS" name="comercialName" formControlName="commercialName">
+        </mat-form-field>
+      </section>
+      <section fxLayout="column" fxLayoutGap="0" fxLayout.gt-sm="row" fxLayoutGap.gt-sm="16px">
+        <mat-form-field appearance="outline" fxFlex.gt-sm="auto">
+          <mat-label>Vin number</mat-label>
+          <input matInput type="text" placeholder="7783LLD" name="vinNumber" formControlName="vinNumber">
+        </mat-form-field>
+        <mat-form-field appearance="outline" fxFlex.gt-sm="auto">
+          <mat-label>Capacity</mat-label>
+          <input matInput type="number" placeholder="4" name="capacity" formControlName="capacity">
+        </mat-form-field>
+      </section>
 
-  </div>
-  <div mat-dialog-content fxLayout="row" fxLayoutAlign="space-between center">
-    <button mat-button
-      [ngClass]="{'mat-stroked-button':themeService.isLightMode(),'mat-raised-button':themeService.isDarkMode()}"
-      color="accent" type="button" (click)="onCloseDialog()">Cancel</button>
-    <!-- <button mat-button color="accent" type="button" (click)="onCloseDialog()">Cancel</button> -->
-    <button mat-raised-button color="accent" type="submit" [disabled]="!vehicleFormGroup.valid">Ok</button>
-  </div>
-</form>
+    </div>
+    <div mat-dialog-content class="dialog-action" fxLayout="row" fxLayoutAlign="space-between center">
+      <button mat-button
+        [ngClass]="{'mat-stroked-button':themeService.isLightMode(),'mat-raised-button':themeService.isDarkMode()}"
+        color="accent" type="button" (click)="onCloseDialog()">Cancel</button>
+      <button mat-raised-button color="accent" type="submit" [disabled]="!vehicleFormGroup.valid">Ok</button>
+    </div>
+  </form>
+</div>

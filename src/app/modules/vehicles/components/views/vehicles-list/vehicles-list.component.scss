@@ -24,11 +24,114 @@
   margin: 1rem 0 1.5rem;
   & .mat-card-title {
     margin-bottom: 16px;
-    @include screen("md") {
-      font-size: 1.5rem;
-    }
+    font-size: 1.8rem;
     @include screen("lg") {
       font-size: 2rem;
     }
+  }
+}
+
+.filter {
+  margin-top: 1rem;
+  width: 100%;
+}
+
+.filter-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  max-width: 100%;
+  width: 500px;
+  margin: 0 auto;
+}
+
+.title-icon-large-res {
+  margin-left: 1rem;
+}
+
+.action-link {
+  text-decoration: none;
+  margin: 0 8px 0 0;
+
+  &:last-child {
+    margin: 0;
+  }
+}
+
+.new-vehicle-button {
+  position: fixed;
+  bottom: 40px;
+  top: auto;
+  right: 50px;
+}
+
+.small-res-button-container {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  .small-res-buttons:not(:last-child) {
+    margin-right: 0.5rem;
+  }
+}
+
+.mat-column-plate {
+  box-sizing: border-box;
+  flex: 0 0 20% !important;
+  width: 20% !important;
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+  @include screen("sm") {
+    flex: 1 !important;
+    width: auto !important;
+  }
+}
+
+.mat-column-manufacturer,
+.mat-column-commercialName {
+  box-sizing: border-box;
+  flex: 0 0 30% !important;
+  width: 30% !important;
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+  @include screen("sm") {
+    flex: 1 !important;
+    width: auto !important;
+  }
+}
+
+.mat-column-actions {
+  box-sizing: border-box;
+  flex: 0 0 20% !important;
+  width: 20% !important;
+  word-wrap: break-word !important;
+  white-space: unset !important;
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
+  -ms-hyphens: auto;
+  -moz-hyphens: auto;
+  -webkit-hyphens: auto;
+  hyphens: auto;
+
+  @include screen("sm") {
+    flex: 1 !important;
+    width: auto !important;
   }
 }

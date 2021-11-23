@@ -1,13 +1,14 @@
 <div mat-dialog-content>
   <p>{{data.question}}</p>
-  <ul>
-    <li>{{data.element}}</li>
-  </ul>
+  <mat-card>
+    <mat-card-title>
+      {{data.element}}
+    </mat-card-title>
+  </mat-card>
 </div>
 <div mat-dialog-content fxLayout="row" fxLayoutAlign="space-between center">
   <button mat-button
     [ngClass]="{'mat-stroked-button':themeService.isLightMode(),'mat-raised-button':themeService.isDarkMode()}"
-    color="accent" type="button" [mat-dialog-close]="false">Cancel·lar</button>
-  <!-- <button mat-button color="accent" type="button" [mat-dialog-close]="false">Cancel·lar</button> -->
+    color="accent" type="button" [mat-dialog-close]="false">Cancel</button>
   <button mat-raised-button color="accent" type="submit" [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
 </div>

@@ -1,0 +1,22 @@
+@import "../../../../../../themes/responsive.theme.scss";
+
+.container {
+  padding: 8px 0;
+  @include screen("md") {
+    padding: 32px;
+  }
+}
+
+.dialog-wrapper {
+  width: 70vw !important;
+  @include screen("md") {
+    width: 60vw !important;
+  }
+  @include screen("lg") {
+    width: 40vw !important;
+  }
+}
+
+.dialog-action {
+  margin-top: 1rem;
+}

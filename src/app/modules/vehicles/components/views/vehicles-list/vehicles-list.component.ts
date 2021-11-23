@@ -7,6 +7,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '../../dialogs/confirm-dialog/confirm-dialog.component';
 import { Observable } from 'rxjs';
 import { MatTableDataSource } from '@angular/material/table';
+import { Workbook } from 'exceljs';
+import { saveAs } from 'file-saver-es';
 
 @Component({
   selector: 'app-vehicles-list',
@@ -66,6 +68,7 @@ export class VehiclesListComponent implements OnInit {
         tap(vehicleFormData => {
           const modifiedVehicle: VehicleView = {
             ...vehicleFormData,
+            plate: vehicleFormData.plate.toUpperCase(),
             id: vehicle.id
           };
           this.vs.updateVehicle(modifiedVehicle).pipe(
@@ -105,6 +108,34 @@ export class VehiclesListComponent implements OnInit {
   vehiclesApplyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
     this.vehicleList.filter = filterValue.trim().toLowerCase();
+  }
+
+  exportExcel() {
+
+    const wb = new Workbook();
+    const ws = wb.addWorksheet();
+
+    ws.addRow(['id', 'plate', 'manufacturer', 'make', 'commercialName', 'vinNumber', 'capacity']);
+    ws.getRow(1).font = { bold: true };
+    this.vehicleList.data.forEach(vehicle => {
+      ws.addRow(Object.values(vehicle));
+    });
+
+    ws.columns.forEach(column => {
+      if (column.values) {
+        const lengths: number[] = column.values.map(v => {
+          if (v) return v.toString().length;
+          else return 0;
+        });
+        const maxLength = Math.max(...lengths.filter(v => typeof v === 'number'));
+        column.width = maxLength + 10;
+      }
+    });
+
+    wb.xlsx.writeBuffer().then(data => {
+      const blob = new Blob([data], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+      saveAs(blob, `vehicles-${new Date().valueOf()}.xlsx`);
+    });
   }
 
 }

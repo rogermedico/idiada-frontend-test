@@ -57,7 +57,7 @@ export class VehicleDialogComponent implements OnInit {
         this.data ? this.data.plate : null,
         [
           Validators.required,
-          //fer un validador de matricula
+          Validators.pattern('^[0-9]{4}[a-zA-Z]{3}$')
         ]
       ],
       manufacturer: [
