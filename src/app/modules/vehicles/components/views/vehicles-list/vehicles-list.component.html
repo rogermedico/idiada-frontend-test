@@ -74,7 +74,7 @@
           <mat-header-row *matHeaderRowDef="vehicleTableDisplayedColumns"></mat-header-row>
           <mat-row *matRowDef="let row; columns: vehicleTableDisplayedColumns;"></mat-row>
         </mat-table>
-        <mat-paginator [pageSize]="20" [pageSizeOptions]="[10, 20, 100]" showFirstLastButtons aria-label="Select page">
+        <mat-paginator [pageSize]="10" [pageSizeOptions]="[10, 20, 100]" showFirstLastButtons aria-label="Select page">
         </mat-paginator>
       </div>
       <button class="new-vehicle-button" mat-fab color="accent" aria-label="Create vehicle" (click)="createVehicle()"

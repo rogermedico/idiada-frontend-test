@@ -1,6 +1,5 @@
-import { Injectable, NgZone } from '@angular/core';
+import { Component, Injectable, NgZone } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
-import { VehiclesListComponent } from '@modules/vehicles/components/views/vehicles-list/vehicles-list.component';
 
 @Injectable({
   providedIn: 'root'

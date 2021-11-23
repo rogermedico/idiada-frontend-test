@@ -20,15 +20,15 @@ mat-sidenav {
   height: 64px;
 }
 
-.toolbar__brand {
+.toolbar-brand {
   margin-left: 16px;
 }
 
-.toolbar__brand__text {
+.toolbar-brand-text {
   font-size: 1.4rem;
 }
 
-.toolbar__link {
+.toolbar-link {
   text-decoration: none;
   color: inherit;
   &:hover {
@@ -50,9 +50,4 @@ mat-sidenav {
 
 .router-outlet-container {
   height: 100%;
-}
-
-.beta {
-  margin-left: 1rem;
-  font-size: 0.8rem;
 }

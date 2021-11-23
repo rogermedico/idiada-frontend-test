@@ -25,23 +25,13 @@
       color: rgba(0, 0, 0, 0.54);
     }
   }
-
-  // .drag-drop-button {
-  //   color: mat-color($accent);
-  // }
-  // .action-icon {
-  //   color: mat-color($primary, lighter);
-  //   &:hover {
-  //     color: rgba(0, 0, 0, 0.54);
-  //   }
-  // }
 }
 
 @mixin app-light-typography($config-or-theme) {
   // Extract the typography configuration in case a theme has been passed.
   $config: mat-get-typography-config($config-or-theme);
 
-  .toolbar__brand {
+  .toolbar-brand {
     font: {
       family: mat-font-family($config, body-1);
       size: mat-font-size($config, body-1);

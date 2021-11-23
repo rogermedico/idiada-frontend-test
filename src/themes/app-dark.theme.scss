@@ -37,7 +37,7 @@
   // Extract the typography configuration in case a theme has been passed.
   $config: mat-get-typography-config($config-or-theme);
 
-  .toolbar__brand {
+  .toolbar-brand {
     font: {
       family: mat-font-family($config, body-1);
       size: mat-font-size($config, body-1);

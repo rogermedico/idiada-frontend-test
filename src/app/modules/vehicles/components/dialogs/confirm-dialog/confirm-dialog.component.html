@@ -6,9 +6,8 @@
     </mat-card-title>
   </mat-card>
 </div>
-<div mat-dialog-content fxLayout="row" fxLayoutAlign="space-between center">
-  <button mat-button
-    [ngClass]="{'mat-stroked-button':themeService.isLightMode(),'mat-raised-button':themeService.isDarkMode()}"
-    color="accent" type="button" [mat-dialog-close]="false">Cancel</button>
+<div mat-dialog-content fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="end center">
+  <button mat-button [color]="themeService.isLightMode()?'accent':'primary'" type="button"
+    [mat-dialog-close]="false">Cancel</button>
   <button mat-raised-button color="accent" type="submit" [mat-dialog-close]="true" cdkFocusInitial>Ok</button>
 </div>
