@@ -26,6 +26,11 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "inlineStyleLanguage": "scss",
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "src/themes"
+              ]
+            },
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -34,7 +39,10 @@
               "src/themes/material.theme.scss",
               "src/styles.scss"
             ],
-            "scripts": []
+            "scripts": [],
+            "allowedCommonJsDependencies": [
+              "exceljs"
+            ]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,39 @@
+@use "sass:map";
+@use "~@angular/material" as mat;
+
+@mixin dark-color($theme) {
+  $color-config: mat.get-color-config($theme);
+  $primary-palette: map.get($color-config, "primary");
+  $accent-palette: map.get($color-config, "accent");
+
+  //Your custom color rules.
+  .active-sidenav-item {
+    .nav-caption {
+      color: mat.get-color-from-palette($primary-palette, 500);
+    }
+  }
+
+  .action-icon {
+    color: mat.get-color-from-palette($primary-palette, 50);
+    &:hover {
+      color: mat.get-color-from-palette($primary-palette, 300);
+    }
+  }
+}
+
+@mixin dark-typography($theme) {
+  $typography-config: mat.get-typography-config($theme);
+  //Your custom typography rules
+}
+
+@mixin custom-dark-theme($theme) {
+  $color-config: mat.get-color-config($theme);
+  @if $color-config != null {
+    @include dark-color($theme);
+  }
+
+  $typography-config: mat.get-typography-config($theme);
+  @if $typography-config != null {
+    @include dark-typography($theme);
+  }
+}

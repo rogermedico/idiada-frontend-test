@@ -34,9 +34,6 @@
 
     </div>
     <div mat-dialog-content class="dialog-action" fxLayout="row" fxLayoutGap="1rem" fxLayoutAlign="end center">
-      <!-- <button mat-button
-        [ngClass]="{'mat-stroked-button':themeService.isLightMode(),'mat-raised-button':themeService.isDarkMode()}"
-        color="accent" type="button" (click)="onCloseDialog()">Cancel</button> -->
       <button mat-button [color]="themeService.isLightMode()?'accent':'primary'" type="button"
         (click)="onCloseDialog()">Cancel</button>
       <button mat-raised-button color="accent" type="submit" [disabled]="!vehicleFormGroup.valid">Ok</button>
