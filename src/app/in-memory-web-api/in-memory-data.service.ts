@@ -7,18 +7,102 @@ import { VehicleView } from '../models/vehicleView';
 })
 export class InMemoryDataService implements InMemoryDbService {
 
+  private manufacturers = [
+    {
+      manufacturer: 'Renault Group',
+      makes: [
+        {
+          make: 'Renault',
+          commercialNames: [
+            'Megane RS',
+            'Clio RS',
+            'Kadjar',
+            'ZOE',
+            'Twingo'
+          ]
+        }
+      ]
+    },
+    {
+      manufacturer: 'PSA Group',
+      makes: [
+        {
+          make: 'Citroën',
+          commercialNames: [
+            'C4',
+            'C5',
+            'Berlingo'
+          ]
+        },
+        {
+          make: 'Peugeot',
+          commercialNames: [
+            '207',
+            '3008',
+            '5008'
+          ]
+        }
+      ]
+    },
+    {
+      manufacturer: 'VAG Group',
+      makes: [
+        {
+          make: 'Volkswagen',
+          commercialNames: [
+            'Golf',
+            'Touareg',
+            'Cady'
+          ]
+        },
+        {
+          make: 'Audi',
+          commercialNames: [
+            'RS4',
+            'A3',
+            'S5'
+          ]
+        },
+        {
+          make: 'BMW',
+          commercialNames: [
+            'M1',
+            'X3',
+            'Serie 5'
+          ]
+        }
+      ]
+    }
+  ];
+
+  private getRandomData() {
+    const manufacturer = this.manufacturers[Math.floor(Math.random() * this.manufacturers.length)];
+    const make = manufacturer.makes[Math.floor(Math.random() * manufacturer.makes.length)];
+    const commercialName = make.commercialNames[Math.floor(Math.random() * make.commercialNames.length)];
+
+    return {
+      plate: `${Math.floor(Math.random() * 9000 + 1000)}RMP`, // random between 1000 and 9999
+      manufacturer: manufacturer.manufacturer,
+      make: make.make,
+      commercialName: commercialName,
+      vinNumber: `${Math.floor(Math.random() * 100 + 100)}NGA${Math.floor(Math.random() * 900 + 100)}`, // random between 100 and 999
+      capacity: Math.floor(Math.random() * 5) + 1 // random between 1 and 6
+    }
+  }
+
   private generateMockCars(): VehicleView[] {
     const vehicleList: VehicleView[] = [];
     for (let i = 1; i <= 25; i++) {
-      vehicleList.push({
-        id: i,
-        plate: `778${i % 10}LLD`,
-        manufacturer: 'Renault Group',
-        make: 'Renault',
-        commercialName: 'Megane RS',
-        vinNumber: `182NGA1${i}`,
-        capacity: 1
-      });
+      const randomData = this.getRandomData();
+      vehicleList.push(new VehicleView(
+        i,
+        randomData.plate,
+        randomData.manufacturer,
+        randomData.make,
+        randomData.commercialName,
+        randomData.vinNumber,
+        randomData.capacity
+      ));
     }
     return vehicleList;
   }

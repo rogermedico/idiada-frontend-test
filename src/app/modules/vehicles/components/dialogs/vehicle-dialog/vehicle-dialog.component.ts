@@ -67,6 +67,7 @@ export class VehicleDialogComponent implements OnInit {
         this.data ? this.data.capacity : null,
         [
           Validators.required,
+          Validators.min(1)
         ]
       ],
     });
