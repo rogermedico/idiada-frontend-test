@@ -42,7 +42,7 @@ export class VehiclesService {
     );
   }
 
-  updateVehicle(vehicle: VehicleView): Observable<null | VehicleView> {
+  updateVehicle(vehicle: VehicleView): Observable<VehicleView> {
     return this.http.put<VehicleView>(environment.vehicleEndpoint, vehicle, this.httpOptions).pipe(
       catchError(err => this.handleError<VehicleView>(err, 'updateVehicle'))
     );

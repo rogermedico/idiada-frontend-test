@@ -38,7 +38,7 @@
           </ng-container>
           <ng-container matColumnDef="plate">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Plate</mat-header-cell>
-            <mat-cell *matCellDef="let element">{{element.plate}}</mat-cell>
+            <mat-cell *matCellDef="let element">{{element.plate | uppercase}}</mat-cell>
           </ng-container>
           <ng-container matColumnDef="manufacturer">
             <mat-header-cell *matHeaderCellDef mat-sort-header>Manufacturer</mat-header-cell>

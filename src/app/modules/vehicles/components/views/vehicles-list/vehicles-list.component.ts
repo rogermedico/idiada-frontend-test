@@ -52,6 +52,7 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
       take(1),
       filter(vehicleFormData => vehicleFormData),
       tap(vehicleFormData => {
+        vehicleFormData.plate = vehicleFormData.plate.toUpperCase();
         this.vs.createVehicle(vehicleFormData).subscribe(vehicle => {
           this.vehicleList.data = [...this.vehicleList.data, vehicle];
         })
@@ -77,11 +78,15 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
         take(1),
         filter(newData => newData),
         tap(vehicleFormData => {
-          const modifiedVehicle: VehicleView = {
-            ...vehicleFormData,
-            plate: vehicleFormData.plate.toUpperCase(),
-            id: vehicle.id
-          };
+          const modifiedVehicle: VehicleView = new VehicleView(
+            vehicle.id,
+            vehicleFormData.plate.toUpperCase(),
+            vehicleFormData.manufacturer,
+            vehicleFormData.make,
+            vehicleFormData.commercialName,
+            vehicleFormData.vinNumber,
+            vehicleFormData.capacity
+          );
           this.vs.updateVehicle(modifiedVehicle).pipe(
             tap(() => {
               this.vehicleList.data = this.vehicleList.data.map((v: VehicleView) => {

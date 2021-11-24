@@ -12,10 +12,10 @@ export class InMemoryDataService implements InMemoryDbService {
     for (let i = 1; i <= 25; i++) {
       vehicleList.push({
         id: i,
-        commercialName: 'Megane RS',
-        make: 'Renault',
-        manufacturer: 'Renault Group',
         plate: `778${i % 10}LLD`,
+        manufacturer: 'Renault Group',
+        make: 'Renault',
+        commercialName: 'Megane RS',
         vinNumber: `182NGA1${i}`,
         capacity: 1
       });
