@@ -133,7 +133,7 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
     const wb = new Workbook();
     const ws = wb.addWorksheet();
 
-    ws.addRow(['id', 'plate', 'manufacturer', 'make', 'commercialName', 'vinNumber', 'capacity']);
+    ws.addRow(['Id', 'Plate', 'Manufacturer', 'Make', 'Commercial name', 'Vin number', 'Capacity']);
     ws.getRow(1).font = { bold: true };
     this.vehicleList.data.forEach(vehicle => {
       ws.addRow(Object.values(vehicle));
