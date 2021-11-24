@@ -54,7 +54,16 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
       tap(vehicleFormData => {
         vehicleFormData.plate = vehicleFormData.plate.toUpperCase();
         this.vs.createVehicle(vehicleFormData).subscribe(vehicle => {
-          this.vehicleList.data = [...this.vehicleList.data, vehicle];
+          const v = new VehicleView(
+            vehicle.id,
+            vehicle.plate?.toUpperCase(),
+            vehicle.manufacturer,
+            vehicle.make,
+            vehicle.commercialName,
+            vehicle.vinNumber,
+            vehicle.capacity
+          )
+          this.vehicleList.data = [...this.vehicleList.data, v];
         })
       }),
       tap(() => this.ns.showMessage('New vehicle successfully added', 'OK'))
