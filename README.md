@@ -1,27 +1,56 @@
 # Idiada Exercice Frontend Angular
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.2.7.
+## Context
 
-## Development server
+I was provided with an Angular 6 project that I'm unable to run due to angular.json file missing. The project had two components styled with [primeng](https://github.com/primefaces/primeng) and [primeicons](https://github.com/primefaces/primeicons). One component was a CRUD of vehicles and the other was a dialog that seems to open when a new vehicle is created or edited.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+The mock data was created with `createVehicle` and `createVehicleList` defined in `MockitoUtils.ts` file into `utils` folder. That two functions uses `Builder` function and `VehicleView` class stored into `domain` folder.
 
-## Code scaffolding
+Then to retrieve the data from component it was a service with `loadVehicles` and `createVehicle` functions. The first function calls `createVehicleList` that retrieves mock data. The second one, seems a legit call to an API.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Work done
 
-## Build
+1. Run the project: I have created a new Angular 12 project and installed `primeng` and `primeicons` dependencies. Then I moved all the component, services and other files into the new project and only then I could run the project and see the vehicle CRUD.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+2. Enable strict mode: Angular 12 comes wih strict mode enabled. I have modified the code since I could enable the strict mode.
 
-## Running unit tests
+3. Implement proper vehicles service: I have installed [in-memory-web-api](https://github.com/angular/in-memory-web-api) dependency to intercept the API calls and return mock data. Then I modified the `vehicles.service.ts` with proper calls to an API. After that I made a call to get the vehicles into `vehicles-list` component and checked if it worked.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+4. Functional CRUD: I have installed [@angular/material](https://material.angular.io/) and [@angular/flex-layout](https://github.com/angular/flex-layout). Then I have modified `vehicle-list` and `vehicle-dialog` to make the CRUD functional.
 
-## Running end-to-end tests
+5. Vehicles module: I have extracted all vehicles functionality into a new module that is lazy loaded to make the app more modular and allow the development and inclusion of new modules each of them into a specific route.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+6. UI/UX improvement: When all was working I have started to work in the UI. I have replaced all `primeng` and `primeicons` with `@angular/material` and then I have removed them as I didn't use them anymore.
 
-## Further help
+7. Refactored files and folders: Moved all the files into a new folder schema for a better file understanding.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+8. Toolbar, sidebar, dark mode and other module: I have added a toolbar, a sidebar and a new home module (very simple). I have also added the ability to change the app to dark mode.
+
+9. Pagination and column order: I have added pagination and the ability to order the columns to the vehicle table.
+
+10. Notifications: I have added a snackbar notification when some CRUD operation is done.
+
+11. Final tweaks: Some CSS tweaks to improve application UI.
+
+## Project explanation
+
+- Toolbar: The toolbar has a button on the left that brings the user to the home component and a icon on the right that allows user to switch between light and dark mode.
+
+- Sidebar: The sidebar has all modules entry points. If new modules are added to the app a good point to make them accessible is implementing a link into the sidebar. In low resolutions the sidebar is hidden and an icon on the toolbar allows users to show or hide it.
+
+- Home module: Trivial.
+
+- Vehicles module:
+  - Title: It shows the module name and the count of vehicles in the list. It also have a icon on the right that allows the user to download an excel file with all the list info.
+  - Filter: It is an input that allows the user to filter the list by any vehicle field. It starts to work from 3 letters. You can try with plate or vin number that are different from every vehicle.
+  - Table: Clicking into the header of a column the user can order the whole table by that field ascending, descending or default order. Each row has one vehicle info with the corresponding actions icons into the last column. Into the bottom of the table there are the pagination.
+  - Create vehicle: at the bottom right there are an icon that allows user to create new vehicles.
+  - Responsiveness: When the page is small some columns from the table are hidden and the download excel and create vehicle buttons are moved to the top right corner.
+
+## Run Project (local environment)
+
+Run `npm run start` and a browser should automatically open with the app running. If not navigate to `http://localhost:4200`.
+
+## Author
+
+Roger Medico Piqué - roger.medico@gmail.com
