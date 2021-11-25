@@ -10,7 +10,7 @@ import { Workbook } from 'exceljs';
 import { saveAs } from 'file-saver-es';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { NotificationService } from '@shared/services/notification.service';
+import { NotificationService } from '@shared/services/notification/notification.service';
 
 @Component({
   selector: 'app-vehicles-list',

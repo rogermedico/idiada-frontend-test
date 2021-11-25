@@ -1,5 +1,6 @@
 import { Component, Injectable, NgZone } from '@angular/core';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
+import { CustomNotificationComponent } from './custom-notification/custom-notification.component';
 
 @Injectable({
   providedIn: 'root'
@@ -23,6 +24,18 @@ export class NotificationService {
       horizontalPosition: config.horizontalPosition ? config.horizontalPosition : this.snackBarDefaultProperties.horizontalPosition,
       verticalPosition: config.verticalPosition ? config.verticalPosition : this.snackBarDefaultProperties.verticalPosition,
       panelClass: ['message-snack']
+    });
+  }
+
+  showMessageFromCustomNotificationComponent(msg: string, action: string = '', config: MatSnackBarConfig = {}) {
+    this.snackBar.openFromComponent(CustomNotificationComponent, {
+      data: {
+        message: msg,
+        action: action,
+        duration: config.duration ? config.duration : this.snackBarDefaultProperties.duration,
+        horizontalPosition: config.horizontalPosition ? config.horizontalPosition : this.snackBarDefaultProperties.horizontalPosition,
+        verticalPosition: config.verticalPosition ? config.verticalPosition : this.snackBarDefaultProperties.verticalPosition,
+      }
     });
   }
 

@@ -7,11 +7,13 @@ import { HttpClientModule } from '@angular/common/http';
 import { inMemoryWebApiModule } from './in-memory-web-api';
 import { MaterialModule } from '@modules/material/material.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
+import { CustomNotificationComponent } from '@shared/services/notification/custom-notification/custom-notification.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    CustomNotificationComponent,
   ],
   imports: [
     BrowserModule,
