@@ -2,7 +2,7 @@ import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { VehiclesService } from '@modules/vehicles/services/vehicles.service';
 import { VehicleView } from '@models/vehicleView';
 import { VehicleDialogComponent } from '@modules/vehicles/components/dialogs/vehicle-dialog/vehicle-dialog.component';
-import { filter, mergeMap, take, tap } from 'rxjs/operators';
+import { filter, flatMap, map, mergeMap, take, tap } from 'rxjs/operators';
 import { MatDialog } from '@angular/material/dialog';
 import { ConfirmDialogComponent } from '@modules/vehicles/components/dialogs/confirm-dialog/confirm-dialog.component';
 import { MatTableDataSource } from '@angular/material/table';
@@ -51,22 +51,24 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().pipe(
       take(1),
       filter(vehicleFormData => vehicleFormData),
-      tap(vehicleFormData => {
+      mergeMap(vehicleFormData => {
         vehicleFormData.plate = vehicleFormData.plate.toUpperCase();
-        this.vs.createVehicle(vehicleFormData).subscribe(vehicle => {
-          const v = new VehicleView(
-            vehicle.id,
-            vehicle.plate?.toUpperCase(),
-            vehicle.manufacturer,
-            vehicle.make,
-            vehicle.commercialName,
-            vehicle.vinNumber,
-            vehicle.capacity
-          )
-          this.vehicleList.data = [...this.vehicleList.data, v];
-        })
-      }),
-      tap(() => this.ns.showMessage('New vehicle successfully added', 'OK'))
+        return this.vs.createVehicle(vehicleFormData).pipe(
+          map(vehicle => {
+            const v = new VehicleView(
+              vehicle.id,
+              vehicle.plate?.toUpperCase(),
+              vehicle.manufacturer,
+              vehicle.make,
+              vehicle.commercialName,
+              vehicle.vinNumber,
+              vehicle.capacity
+            )
+            this.vehicleList.data = [...this.vehicleList.data, v];
+          }),
+          tap(() => this.ns.showMessage('New vehicle successfully added', 'OK')),
+        )
+      })
     ).subscribe();
   }
 
@@ -86,7 +88,7 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
       dialogRef.afterClosed().pipe(
         take(1),
         filter(newData => newData),
-        tap(vehicleFormData => {
+        mergeMap(vehicleFormData => {
           const modifiedVehicle: VehicleView = new VehicleView(
             vehicle.id,
             vehicleFormData.plate.toUpperCase(),
@@ -96,7 +98,7 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
             vehicleFormData.vinNumber,
             vehicleFormData.capacity
           );
-          this.vs.updateVehicle(modifiedVehicle).pipe(
+          return this.vs.updateVehicle(modifiedVehicle).pipe(
             tap(() => {
               this.vehicleList.data = this.vehicleList.data.map((v: VehicleView) => {
                 if (v.id != modifiedVehicle.id) return v;
@@ -104,8 +106,8 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
               });
               this.ns.showMessage(`Vehicle with id ${modifiedVehicle?.id} successfully updated`, 'OK');
             }),
-          ).subscribe();
-        }),
+          )
+        })
       ).subscribe();
     }
   }
@@ -121,15 +123,13 @@ export class VehiclesListComponent implements OnInit, AfterViewInit {
     dialogRef.afterClosed().pipe(
       take(1),
       filter(result => result),
-      tap(() => {
-        this.vs.deleteVehicle(vehicle.id).pipe(
-          take(1),
-          tap(() => {
-            this.vehicleList.data = this.vehicleList.data.filter((v: VehicleView) => v.id != vehicle.id);
-            this.ns.showMessage(`Vehicle with id ${vehicle.id} successfully deleted`, 'OK')
-          })
-        ).subscribe();
-      })).subscribe();
+      mergeMap(() => this.vs.deleteVehicle(vehicle.id).pipe(
+        map(() => {
+          this.vehicleList.data = this.vehicleList.data.filter((v: VehicleView) => v.id != vehicle.id);
+          this.ns.showMessage(`Vehicle with id ${vehicle.id} successfully deleted`, 'OK')
+        })
+      )
+      )).subscribe();
   }
 
   vehiclesApplyFilter(event: Event) {
